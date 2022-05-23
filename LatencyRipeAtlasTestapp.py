@@ -1,5 +1,6 @@
 import requests
 import psycopg2
+import pandas as pd
 
 
 conn = psycopg2.connect(
@@ -14,75 +15,79 @@ cursor = conn.cursor()
 
 
 print(" -> read measurement IDs")
-MID = 41329425
 
-
-print(" -> Request Results from Ripe (ID: ")
-r = requests.get('https://atlas.ripe.net/api/v2/measurements/'+str(MID)+'/results')
-res = r.json()
+df1 = pd.read_excel('INPUT.xlsx', index_col=None, header=None)  
 
 
 
-cnt = 1
-for item in res:
-    print("insert ", cnt , " of ", len(res))
-    cnt = cnt + 1
+print(df1)
+print()
+for MID in df1.iloc[:,0]:
+
+    print(" -> Request Results from Ripe (ID: ", MID, ")")
+    r = requests.get('https://atlas.ripe.net/api/v2/measurements/'+str(MID)+'/results')
+    res = r.json()
+
+    cnt = 1
+    for item in res:
+        print("insert ", cnt , " of ", len(res), "in ", MID)
+        cnt = cnt + 1
 
 
-    query =  """INSERT INTO public."resultsPING" (
-    fw,
-    lts,
-    dst_name,
-    af,
-    dst_addr,
-    src_addr,
-    proto,
-    size,
-    result,
-    dup,
-    rcvd,
-    sent,
-    min,
-    max,
-    avg,
-    msm_id,
-    prb_id,
-    timestamp,
-    msm_name,
-    fromdate,
-    type,
-    group_id,
-    step,
-    stored_timestamp
-    ) VALUES (%s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s)
-    ON CONFLICT DO NOTHING
-    ;"""
-    data = (item['fw'],
-    item['lts'],
-    item['dst_name'],
-    item['af'],
-    item['dst_addr'],
-    item['src_addr'],
-    item['proto'],
-    item['size'],
-    str(item['result']),
-    item['dup'],
-    item['rcvd'],
-    item['sent'],
-    item['min'],
-    item['max'],
-    item['avg'],
-    item['msm_id'],
-    item['prb_id'],
-    item['timestamp'],
-    item['msm_name'],
-    item['from'],
-    item['type'],
-    item['group_id'],
-    item['step'],
-    item['stored_timestamp'])
+        query =  """INSERT INTO public."resultsPING" (
+        fw,
+        lts,
+        dst_name,
+        af,
+        dst_addr,
+        src_addr,
+        proto,
+        size,
+        result,
+        dup,
+        rcvd,
+        sent,
+        min,
+        max,
+        avg,
+        msm_id,
+        prb_id,
+        timestamp,
+        msm_name,
+        fromdate,
+        type,
+        group_id,
+        step,
+        stored_timestamp
+        ) VALUES (%s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s)
+        ON CONFLICT DO NOTHING
+        ;"""
+        data = (item['fw'],
+        item['lts'],
+        item['dst_name'],
+        item['af'],
+        item['dst_addr'],
+        item['src_addr'],
+        item['proto'],
+        item['size'],
+        str(item['result']),
+        item['dup'],
+        item['rcvd'],
+        item['sent'],
+        item['min'],
+        item['max'],
+        item['avg'],
+        item['msm_id'],
+        item['prb_id'],
+        item['timestamp'],
+        item['msm_name'],
+        item['from'],
+        item['type'],
+        item['group_id'],
+        item['step'],
+        item['stored_timestamp'])
 
-    cursor.execute(query, data)
-    
-conn.commit()
-print("done")
+        cursor.execute(query, data)
+        
+    conn.commit()
+    print("done")
