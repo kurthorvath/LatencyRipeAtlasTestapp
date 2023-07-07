@@ -1,0 +1,98 @@
+[
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "dnsV4",
+        "msmid": 54460772
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "icmpV4",
+        "msmid": 54460773
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "tracerouteV4",
+        "msmid": 54460774
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "httpV4",
+        "msmid": 54460775
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "ntpV4",
+        "msmid": 54460776
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "SslcertV4",
+        "msmid": 54460777
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "dnsV6",
+        "msmid": 54460778
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "icmpV6",
+        "msmid": 54460779
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "tracerouteV6",
+        "msmid": 54460780
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "httpV6",
+        "msmid": 54460781
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "ntpV6",
+        "msmid": 54460782
+    },
+    {
+        "srcId": 6861,
+        "srcName": "Arnes",
+        "dstId": 6120,
+        "dstName": "Anexia",
+        "type": "SslcertV6",
+        "msmid": 54460783
+    }
+]
