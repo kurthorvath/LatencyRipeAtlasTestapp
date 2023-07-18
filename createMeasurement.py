@@ -73,6 +73,29 @@ def createICMPv6TOip(src, dst):
     (is_success, response) = atlas_request.create()
     return is_success, response
 
+def createICMPv4TOip(src, dst):
+    print("create new series...:", src, dst)
+    AS = AtlasSource(
+        type="probes",
+        value=src.id,
+        requested=5
+    )
+
+    pingv4 = Ping(af=4, target=dst.ipv4, description="PINGv4 "+src.name+" to "+dst.name )
+
+    atlas_request = AtlasCreateRequest(
+        start_time=datetime.utcnow(),
+        stop_time=datetime.utcnow()+timedelta(hours=1),
+        key=ATLAS_API_KEY,
+        measurements=[pingv4],
+        sources=[AS]
+        #is_oneoff=True
+    )
+
+    (is_success, response) = atlas_request.create()
+    return is_success, response
+
+
 
 
 
