@@ -84,8 +84,8 @@ def createICMPv4TOip(src, dst):
     pingv4 = Ping(af=4, target=dst.ipv4, description="PINGv4 "+src.name+" to "+dst.name )
 
     atlas_request = AtlasCreateRequest(
-        start_time=datetime.utcnow(),
-        stop_time=datetime.utcnow()+timedelta(hours=1),
+        start_time=datetime.utcnow()+timedelta(minutes=4),
+        stop_time=datetime.utcnow()+timedelta(days=8),
         key=ATLAS_API_KEY,
         measurements=[pingv4],
         sources=[AS]
